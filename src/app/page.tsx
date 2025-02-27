@@ -15,7 +15,7 @@ export default function Home() {
   const [privKey, setPrivKey] = useState('');
   const [addr, setAddr] = useState('');
   const [msg, setMsg] = useState('123');
-  const [chainId] = useState('bbn-test-5');
+  const [chainId, setChainId] = useState('bbn-test-5');
 
   const [sigByKelpr, setSigByKelpr] = useState('')
   const [sigByPrivKey, setSigByPrivKey] = useState('')
@@ -28,13 +28,12 @@ export default function Home() {
         <label>msg  {'   '}
           <input value={msg} onChange={e => setMsg(e.target.value)} />
         </label>
-        {'  '}
-        <label>chainId  {'   '}
-          <input value={chainId} onChange={()=>{}} />
-        </label>
       </div>
       <main className={styles.main}>
         <div>
+          <label>chainId  {'   '}
+            <input value={chainId} onChange={e => setChainId(e.target.value)} />
+          </label>
           <button onClick={async () => {
             const rs = await keplrSignMsg(msg, chainId);
             setSigByKelpr(rs?.signature?.signature || 'null')
